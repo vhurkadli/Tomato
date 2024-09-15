@@ -1,0 +1,282 @@
+.navbar{
+    padding: 20px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo{
+    width: 150px;
+}
+
+.navbar-menu {
+    display: flex;
+    justify-content: center; /* Center the menu items horizontally */
+    align-items: center;
+    list-style: none;
+    gap: 10px; /* Space between menu items */
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    color:tomato;
+    /* color: linear-gradient(90deg, rgba(255, 99, 71, 0.1), rgba(255, 99, 71, 0.3)); */
+    text-transform: uppercase; /* Makes the text look clean and bold */
+    letter-spacing: 1px;
+}
+
+.navbar-menu a, .navbar-menu .link {
+    text-decoration: none; 
+    color: #49557e;
+    padding: 10px 15px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+.navbar-menu a:hover, .navbar-menu .link:hover {
+    color: tomato; /* Change text color on hover */
+    transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+.navbar-menu a::after, .navbar-menu .link::after {
+    content: '';
+    position: absolute;
+    left: 20%; /* Center the underline horizontally */
+    bottom: 5px;
+    width: 60%; /* Reduce width to 60% */
+    height: 0.5px;
+    background-color: tomato;
+    transform: translateX(-50%) scaleX(0); /* Center and hide initially */
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.navbar-menu a:hover::after, .navbar-menu .link:hover::after {
+    transform: translateX(-0%) scaleX(1);
+    transform-origin: left; /* Smooth underline animation from right to left */
+}
+
+.navbar-menu .active {
+    color: tomato; /* Active menu item color */
+    font-weight: 600; /* Bold the active item */
+}
+
+.navbar-menu .active::after {
+    transform: scaleX(1); 
+}
+
+
+.navbar-right{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/* .sign-in-button{
+    background: linear-gradient(90deg, rgba(255, 99, 71, 0.1), rgba(255, 99, 71, 0.3)); ;
+    font-size: 16px;
+    color: #49557e;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sign-in-button:hover{
+    background-color: #fff4f2;
+} */
+
+.sign-in-button {
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    /* background: linear-gradient(135deg, rgba(255, 99, 71, 0.2), rgba(255, 99, 71, 0.8)); */
+    font-size: 16px;
+    font-weight: 300;
+    color: #ffffff;
+    border: none;
+    padding: 12px 35px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.sign-in-button:hover {
+    background: linear-gradient(135deg, rgba(255, 99, 71, 0.8), rgba(255, 99, 71, 1));
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+    color: #d9d9d9;
+    /* transform: translateY(-5px); */
+}
+
+.sign-in-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.75s ease;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.sign-in-button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+}
+
+.sign-in-button:active {
+    transform: translateY(0px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.navbar li{
+    cursor: pointer;
+}
+
+.navbar-search-icon{
+    margin-top: 5px;
+    position: relative;
+}
+
+.search-icon, .basket-icon{
+    width: 35px;
+    height: 35px;
+}
+
+
+.navbar-search-icon .dot{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    position: absolute;
+    min-width: 20px;
+    min-height: 20px;
+    background-color: tomato;
+    border-radius: 50%;
+    top: -5px;
+    right: -8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff7f7;}
+
+.navbar-profile{
+    position: relative;
+}
+
+.profile-icon{
+    width: 40px;
+    margin-top: 5px;
+}
+
+.navbar-profile:hover .nav-profile-dropdown{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 5px;
+    background-color: #fff;
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.nav-profile-dropdown{
+    position: absolute;
+    display: none;
+    z-index: 1;
+    right: 0;
+    min-width:150px;
+}
+
+.nav-profile-dropdown li {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: #49557e;
+    /* padding: 10px 12px; */
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.nav-profile-dropdown li:hover{
+    transform: translateX(5px);
+    color: #ff6347; 
+}
+
+.nav-profile-dropdown img{
+    width: 18px;
+}
+
+.restaurant-name {
+    color: tomato;
+    background: linear-gradient(90deg, rgba(255, 99, 71, 0.1), rgba(255, 99, 71, 0.3));
+    border-radius: 8px;
+    padding: 10px;
+    display: inline-block;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 1080px) {
+    .navbar-menu {        
+        display: none;
+        flex-direction: column;
+        gap: 20px; /* Reduce gap for smaller screens */
+        font-size: 18px;
+    }
+
+    .restaurant-name{
+        font-size: 4vw;
+    }
+
+    .search-icon{
+        display: none;
+    }
+
+
+    .basket-icon{
+        margin-right: 5px;
+        margin-top: 5px;
+        height: 30px;
+        width: 30px;
+    }
+
+    .navbar-search-icon .dot{
+        margin-right: 5px;
+    }
+
+    .navbar-right{
+        gap: 10px;
+    }
+
+    .sign-in-button{
+        font-size: 10px;
+        padding: 8px 15px;
+    }
+
+    .navbar-profile:hover .nav-profile-dropdown{
+        gap: 1px;
+    }
+
+     .nav-profile-dropdown{
+        position: absolute;
+        display: none;
+        z-index: 1;
+        right: 0;
+        min-width:120px;
+    }
+
+    .nav-profile-dropdown li {
+        font-size: 12px;
+    }
+    
+}

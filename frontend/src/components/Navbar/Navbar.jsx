@@ -3,10 +3,14 @@ import "./Navbar.css";
 import { assets } from "../../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../context/StoreContext";
+import PopUp from "../PopUp/PopUp";
 
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
+  const [showPopUp, setShowPopUp] = useState(false);
   const { getTotalCartAmount, token, setToken,cartItems } = useContext(StoreContext);
+  const[itemAdded,setItemAdded]=useState(0)
+
   const navigate = useNavigate();
 
   const logOut = () => {
@@ -15,9 +19,28 @@ const Navbar = ({ setShowLogin }) => {
     navigate("/");
   };
 
+ 
+
+  const handleCartClick = (e) => {  
+    if (itemAdded <= 0) {
+      e.preventDefault();
+      setShowPopUp(true);
+    } else {
+      navigate("/cart");
+    }
+  };
+
+  useEffect(() => {
+    console.log("cartItems",cartItems,Object.values(cartItems)?.length)
+    const updatedCart = Object.values(cartItems)?.reduce((acc, each) => {
+      return (acc += each);
+    }, 0);
+
+    setItemAdded(updatedCart);
+  }, [cartItems]);
+
   return (
     <div className="navbar">
-      {/* {console.log("cartItems", cartItems,"getTotalCartAmount()",getTotalCartAmount())} */}
       <Link to="/">
         <h2 className="restaurant-name">Vi Cuisine</h2>
       </Link>
@@ -54,16 +77,22 @@ const Navbar = ({ setShowLogin }) => {
       <div className="navbar-right">
         <img className="search-icon" src={assets.search_icon} alt="" />
         <div className="navbar-search-icon">
-          <Link to="/cart">
-            <img className="basket-icon" src={assets.basket_icon} alt="" />
-          </Link>
-          <div className={getTotalCartAmount() === 0 ? "" : "dot"}>
-            {getTotalCartAmount() === 0
-              ? ""
-              : Object.values(cartItems).reduce(
-                  (acc, each) => (acc += each),
-                  0
-                )}
+          {/* <Link to="/cart" onClick={handleCartClick}> */}
+          <img
+            className="basket-icon"
+            src={assets.basket_icon}
+            alt=""
+            onClick={handleCartClick}
+          />
+          {/* </Link> */}
+          <div
+            className={getTotalCartAmount() === 0 ? "" : "dot"}
+            onClick={handleCartClick}
+          >
+            {itemAdded > 0 &&
+              (getTotalCartAmount() === 0
+                ? ""
+                : Object.values(cartItems).filter((val) => val !== 0)?.length)}
           </div>
         </div>
 
@@ -89,6 +118,13 @@ const Navbar = ({ setShowLogin }) => {
           </button>
         )}
       </div>
+      {showPopUp && (
+        <PopUp
+          title={"Cart is Empty!"}
+          message={"Add Items in Cart"}
+          setShowPopUp={setShowPopUp}
+        />
+      )}
     </div>
   );
 };

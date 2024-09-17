@@ -14,3 +14,13 @@
     gap: 30px;
     row-gap: 50px;
 }
+
+@media (max-width: 1080px) {
+    .food-display-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        /* margin-top: 30px; */
+        gap: 30px;
+        /* row-gap: 50px; */
+    }
+}

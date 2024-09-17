@@ -43,52 +43,40 @@ const MyOrders = () => {
         ) : (
           data.map((order, index) => {
             return (
-              <div key={index} className="my-orders-order">
-                <img src={assets.parcel_icon} alt="" />
-                <p>
-                  {order.items.map((item, index) => {
-                    if (order.items.length - 1 === index) {
-                      return item.name + " X " + item.quantity;
-                    } else {
-                      return item.name + " X " + item.quantity + ", ";
-                    }
-                  })}
-                </p>
-                <p>$&nbsp;{order.amount}</p>
-                <p>Items&nbsp;:&nbsp;{order.items.length}</p>
-                <p>
-                  <span>&#x25cf;</span>
-                  <b>&nbsp;{order.status}</b>
-                </p>
-                <button onClick={fetchOrders}>Track Order</button>
-              </div>
+              <>
+                <div key={index} className="my-orders-order">
+                  <img src={assets.parcel_icon} alt="" />
+                  <p>
+                    {order.items.map((item, index) => {
+                      if (order.items.length - 1 === index) {
+                        return item.name + " X " + item.quantity;
+                      } else {
+                        return item.name + " X " + item.quantity + ", ";
+                      }
+                    })}
+                  </p>
+                  <p>Rs.&nbsp;{order.amount}</p>
+                  <p>Items&nbsp;:&nbsp;{order.items.length}</p>
+                  <p className="loader-status">
+                    {order.status === "Delivered" ? (
+                      <>
+                        <span>&#x25cf;</span>
+                        <b>&nbsp;{order.status}</b>
+                      </>
+                    ) : (
+                      <>
+                      <div className="spinner"></div>
+                      <b>&nbsp;{order.status}</b>
+                      </>
+                    )}
+                  </p>
+                  <button onClick={fetchOrders}>Track Order</button>
+                <img className="clock-img" src={assets.parcel_icon} alt="" />
+                </div>
+              </>
             );
           })
         )}
-
-        {/* {data.map((order, index) => {
-          return (
-            <div key={index} className="my-orders-order">
-              <img src={assets.parcel_icon} alt="" />
-              <p>
-                {order.items.map((item, index) => {
-                  if (order.items.length - 1 === index) {
-                    return item.name + " X " + item.quantity;
-                  } else {
-                    return item.name + " X " + item.quantity + ", ";
-                  }
-                })}
-              </p>
-              <p>$&nbsp;{order.amount}</p>
-              <p>Items&nbsp;:&nbsp;{order.items.length}</p>
-              <p>
-                <span>&#x25cf;</span>
-                <b>&nbsp;{order.status}</b>
-              </p>
-              <button onClick={fetchOrders}>Track Order</button>
-            </div>
-          );
-        })} */}
       </div>
     </div>
   );

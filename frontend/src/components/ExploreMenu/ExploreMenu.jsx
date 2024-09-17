@@ -5,9 +5,11 @@ import { menu_list } from "../../assets/assets";
 const ExploreMenu = ({ category, setCategory }) => {
   return (
     <div className="explore-menu" id="explore-menu">
-      <h1>ExploreMenu</h1>
+      <h1>Explore Menu</h1>
       <p className="explore-menu-text">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, odit!
+        Indulge in popular dishes that highlight the unique tastes of local
+        ingredients and culinary traditions. Packed with wholesome ingredients,
+        these dishes offer a perfect balance between nutrition and flavor
       </p>
       <div className="explore-menu-list">
         {menu_list.map((item, index) => {

@@ -145,13 +145,21 @@
     position: relative;
 }
 
+.search-icon{
+    cursor: pointer;
+    width: 35px !important;
+    height: 28px !important;
+}
+
 .search-icon, .basket-icon{
     width: 35px;
     height: 35px;
+    cursor: pointer;
 }
 
 
 .navbar-search-icon .dot{
+    cursor: pointer;
     align-items: center;
     justify-content: center;
     display: flex;

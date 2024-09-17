@@ -10,7 +10,7 @@
     margin-top: 30px;
 }
 
-.my-orders-order{
+/* .my-orders-order{
     display: grid;
     grid-template-columns: 0.5fr 2fr 1fr 1fr 2fr 1fr;
     gap: 20px;
@@ -19,29 +19,75 @@
     padding: 10px 20px;
     color: #454545;
     font-size: 14px;
+} */
+
+.my-orders-order {
+    position: relative;
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 2fr 1fr;
+    gap: 20px;
+    align-items: center;
+    padding: 15px 25px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow:  0 6px 18px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    color: #155263;
+    font-size: 12px; 
+    font-weight: 500;
+}
+
+.my-orders-order:hover {
+    box-shadow:  0 4px 12px rgba(234, 142, 114, 0.571);
+    /* transform: translateY(-3px); */
 }
 
 .my-orders-order img{
-    width: 40px;
+    width: 0px;
 }
 
 .my-orders-order span{
     color: tomato;
 }
 
+.spinner{
+    height: 10px;
+    width: 10px;
+    border: 1.2px solid #67676791;
+    place-self: center;
+    border-top-color: tomato;
+    border-radius: 50%;
+    animation: rotate 0.9s infinite !important;
+}
+
+.loader-status{
+    display: flex;
+}
+
+
 .my-orders-order p b{
     font-weight: 500;
     color: #454545;
 }
 
-.my-orders-order button{
+.my-orders-order button {
+    padding: 10px 10px; /* Add horizontal padding for better touch target */
     border: none;
-    padding: 12px 0px;
-    border-radius: 4px;
-    background-color: #ffe1e1;
+    border-radius: 8px; /* Smooth, modern rounded corners */
+    background-color: #ff4d4d; /* A vibrant, but professional red */
+    color: #fff; /* Clean white text for contrast */
+    font-size: 12px; /* Slightly larger text for readability */
+    font-weight: 500; /* Bold font to emphasize the button */
     cursor: pointer;
-    color: #454545;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: all 0.3s ease; /* Smooth transition on hover/focus */
 }
+
+.my-orders-order button:hover {
+    background-color: #e63946; /* Darken background on hover */
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
 
 .img-container{
     display: flex;
@@ -56,21 +102,66 @@
     animation: roll 2s infinite
 }
 
+.clock-img{
+    position: absolute!important;
+    width: 68px !important;
+    margin-left: 15px !important;
+   }
+
+   
+
  @keyframes roll {
   0% { transform: rotate(-30deg); }
   100% { transform: rotate(20deg); }
 }
 
+
+@keyframes rotate{
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
 @media (max-width: 900px) {
+
+
   .my-orders-order{
-    grid-template-columns: 1fr 2fr 1fr;
-    row-gap: 5px;
+    position: relative;
+    grid-template-columns:  1fr 2fr 1fr;
+    row-gap: 0px;
     font-size: 12px;
+    box-shadow: 0 4px 12px rgba(234, 142, 114, 0.571);;
   }
 
-  .my-orders-order button{
-    font-size: 10px;
+  .clock-img{
+    position: absolute!important;
+    width: 68px !important;
+    margin-left: 15px !important;
+    margin-top: -30px !important;
+   }
+
+  .my-orders-order img{
+    width: 0px;
   }
+
+  .my-orders-order button {
+    padding: 5px 5px;
+    border: none;
+    border-radius: 8px; 
+    background-color: #ff564d; 
+    color: #fff; 
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease;
+  }
+
+.my-orders-order button:hover {
+    background-color: #e63946; 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15); 
+}
 }
 
 

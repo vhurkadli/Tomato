@@ -10,7 +10,7 @@ const Header = () => {
           Choose from diverse menu featureing a delectable array of dishes
           crafted
         </p>
-        <button>View Menu</button>
+        {/* <button>View Menu</button> */}
       </div>
     </div>
   );

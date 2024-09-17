@@ -7,7 +7,8 @@ const Footer = () => {
     <div className="footer" id="footer">
       <div className="footer-content">
         <div className="footer-content-left">
-          <img src={assets.logo} alt="" />
+          {/* <img src={assets.logo} alt="" /> */}
+          <h2 class="restaurant-name">Vi Cuisine</h2>
           <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit.
             Cupiditate, quo.
@@ -31,7 +32,7 @@ const Footer = () => {
           <h2>GET IN TOUCH</h2>
           <ul>
             <li>34567890-678</li>
-            <li>contact@tomato.com</li>
+            <li>contact@vicuisine.com</li>
           </ul>
         </div>
       </div>

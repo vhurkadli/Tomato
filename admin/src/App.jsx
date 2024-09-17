@@ -9,8 +9,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
-  // const url = "http://localhost:4000";
-  const url="https://tomato-backend-vinayaks-projects.vercel.app"
+  const url = "http://localhost:4000";
+  // const url="https://tomato-backend-vinayaks-projects.vercel.app"
   return (
     <div>
       <ToastContainer />

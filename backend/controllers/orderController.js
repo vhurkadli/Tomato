@@ -3,7 +3,7 @@ dotenv.config();
 
 import orderModel from "../models/orderModel.js";
 import userMdel from "../models/userModel.js";
-
+import { io } from "../server.js";
 import Stripe from "stripe";
 
 const stripe = new Stripe(
@@ -97,15 +97,33 @@ const listOrders = async (req, res) => {
 };
 
 //api for updating order status
+// const updateStatus = async (req, res) => {
+//   try {
+//     await orderModel.findByIdAndUpdate(req.body.orderId, {
+//       status: req.body.status,
+//     });
+//     res.json({ success: true, message: "Status Updated" });
+//   } catch (error) {
+//     console.log(error);
+//     res.json({ success: false, message: "Error" });
+//   }
+// };
+
 const updateStatus = async (req, res) => {
   try {
-    await orderModel.findByIdAndUpdate(req.body.orderId, {
+    const updatedOrder = await orderModel.findByIdAndUpdate(req.body.orderId, {
       status: req.body.status,
-    });
-    res.json({ success: true, message: "Status Updated" });
+    }, { new: true });
+
+    // Emit an event to clients with the updated order status
+    io.emit('orderStatusUpdated', updatedOrder);  // Notify all connected clients
+
+    res.json({ success: true, message: 'Status Updated' });
   } catch (error) {
     console.log(error);
-    res.json({ success: false, message: "Error" });
+    res.json({ success: false, message: 'Error' });
   }
 };
+
+
 export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus };

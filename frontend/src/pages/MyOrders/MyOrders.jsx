@@ -4,9 +4,13 @@ import axios from "axios";
 import { StoreContext } from "../../components/context/StoreContext";
 import { assets } from "../../assets/assets";
 import { Link } from "react-router-dom";
+import { io } from 'socket.io-client';
+
 const MyOrders = () => {
   const { token, url,cartItems } = useContext(StoreContext);
   const [data, setData] = useState([]);
+
+  const socket = io(url);
 
   const fetchOrders = async () => {
     const response = await axios.post(
@@ -23,6 +27,21 @@ const MyOrders = () => {
       fetchOrders();
     }
   }, [token]);
+
+
+  useEffect(() => {
+    socket.on('orderStatusUpdated', (updatedOrder) => {
+      console.log("updatedOrder",updatedOrder)
+      setData((prevOrders) =>
+        prevOrders.map((order) =>
+          order._id === updatedOrder._id ? updatedOrder : order
+        )
+      );
+    });
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   return (
     <div className="my-orders">
@@ -83,3 +102,4 @@ const MyOrders = () => {
 };
 
 export default MyOrders;
+

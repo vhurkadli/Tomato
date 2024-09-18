@@ -35,7 +35,6 @@ const PlaceOrder = () => {
         orderItems.push(itemInfo);
       }
     });
-    console.log("orderitems_v", orderItems);
     let orderData = {
       address: data,
       items: orderItems,
